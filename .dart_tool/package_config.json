@@ -68,6 +68,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "envied",
+      "rootUri": "file:///Users/esync/.pub-cache/hosted/pub.dev/envied-0.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "equatable",
       "rootUri": "file:///Users/esync/.pub-cache/hosted/pub.dev/equatable-2.0.5",
       "packageUri": "lib/",
@@ -368,7 +374,7 @@
       "languageVersion": "2.19"
     }
   ],
-  "generated": "2023-04-17T16:53:39.076676Z",
+  "generated": "2023-04-17T22:51:13.563603Z",
   "generator": "pub",
   "generatorVersion": "2.19.6"
 }

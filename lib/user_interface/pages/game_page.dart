@@ -18,6 +18,7 @@ class GamesPage extends StatelessWidget {
           centerTitle: true,
           backgroundColor: AppColors.teal,
           title: Text('Games List'),
+          actions: [],
         ),
         body: !getGames.isLoading.value
             ? const LoadingWidget(transition: Transition.leftToRight)
@@ -145,6 +146,8 @@ class GamesPage extends StatelessWidget {
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 8),
                                         child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             const Text(
                                               'Release date',
@@ -153,18 +156,20 @@ class GamesPage extends StatelessWidget {
                                                   fontSize: 11),
                                               overflow: TextOverflow.ellipsis,
                                             ),
-                                            const Spacer(),
-                                            Expanded(
-                                              child: Text(
-                                                game[index]
-                                                        .released
-                                                        .toString() ??
-                                                    '',
-                                                style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 11),
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
+                                            //  const Spacer(),
+                                            Text(
+                                              getGames.dateFormat
+                                                      .format(
+                                                          game[index].released!)
+                                                      .toString() ??
+                                                  '',
+
+                                              // ??
+                                              // '',
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 11),
+                                              // overflow: TextOverflow.ellipsis,
                                             )
                                           ],
                                         ),
@@ -187,7 +192,7 @@ class GamesPage extends StatelessWidget {
                                             const Spacer(),
                                             Expanded(
                                               child: Text(
-                                                game?[index]
+                                                game[index]
                                                         .genres
                                                         ?.map((e) => e.name)
                                                         .join(', ') ??

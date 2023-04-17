@@ -1,9 +1,9 @@
-import 'dart:collection';
 import 'package:assignment/networks/API/api_base_helper.dart';
 import 'package:assignment/networks/API/exceptions.dart';
 import 'package:assignment/networks/data_model/game_details_response.dart';
 import 'package:assignment/networks/data_model/games_response.dart';
-import 'package:assignment/utils/constants.dart';
+
+import '../../api/api_key.dart';
 
 class Repository {
   ApiBaseHelper helper = ApiBaseHelper();
@@ -12,7 +12,7 @@ class Repository {
       {int? page, int? pageSize, String? startDate, String? endDate}) async {
     try {
       final response = await helper.get(
-          'games?key=${Constants.apiKey}&page=$page&page_size=$pageSize&ordering=-released&dates=$startDate,$endDate&platforms=187');
+          'games?key=${rawgApiKey}&page=$page&page_size=$pageSize&ordering=-released&dates=$startDate,$endDate&platforms=187');
 
       return GamesResponse.fromJson(response);
     } catch (exception) {
@@ -23,8 +23,7 @@ class Repository {
 
   Future<GameDetailsResponse> getGameDetails({int? id}) async {
     try {
-      final response =
-          await helper.get('games/$id?key=02ef6ba5d13444ee86bad607e8bce3f4');
+      final response = await helper.get('games/$id?key=$rawgApiKey');
 
       return GameDetailsResponse.fromJson(response);
     } catch (exception) {

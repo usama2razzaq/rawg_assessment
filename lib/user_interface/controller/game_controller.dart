@@ -85,8 +85,6 @@ class GameController extends GetxController {
         isNextPage.value = false;
         isLoading.value = true;
       }
-      print("savedGameList ${savedGameList!.length}");
-      print("savedGameLis ${untilIndex}");
     } catch (e) {
       print(e);
 

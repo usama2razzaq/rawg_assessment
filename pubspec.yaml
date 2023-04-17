@@ -42,7 +42,7 @@ dependencies:
   get: ^4.6.5
   google_fonts: ^4.0.3
   intl: ^0.18.0
-
+  envied: ^0.3.0
 
 
 dev_dependencies:
