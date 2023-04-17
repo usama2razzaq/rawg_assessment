@@ -21,10 +21,11 @@ class Repository {
     }
   }
 
-  Future<GameDetailsResponse> getGameDetails(
-      {required int id, required String key}) async {
+  Future<GameDetailsResponse> getGameDetails({int? id}) async {
     try {
-      final response = await helper.get('games/$id?key=${Constants.apiKey}');
+      final response =
+          await helper.get('games/$id?key=02ef6ba5d13444ee86bad607e8bce3f4');
+
       return GameDetailsResponse.fromJson(response);
     } catch (exception) {
       print(exception.toString());

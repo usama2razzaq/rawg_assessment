@@ -1,243 +1,446 @@
-// To parse this JSON data, do
-//
-//     final gameDetailsResponse = gameDetailsResponseFromJson(jsonString);
-
 import 'dart:convert';
 
 class GameDetailsResponse {
   GameDetailsResponse({
-    this.count,
-    this.next,
-    this.previous,
-    this.results,
-    this.userPlatforms,
-  });
-
-  int? count;
-  String? next;
-  dynamic previous;
-  List<Result>? results;
-  bool? userPlatforms;
-
-  factory GameDetailsResponse.fromJson(Map<String, dynamic> json) =>
-      GameDetailsResponse(
-        count: json["count"],
-        next: json["next"],
-        previous: json["previous"],
-        results: json["results"] == null
-            ? []
-            : List<Result>.from(
-                json["results"]!.map((x) => Result.fromJson(x))),
-        userPlatforms: json["user_platforms"],
-      );
-}
-
-class Result {
-  Result({
+    this.id,
     this.slug,
     this.name,
-    this.playtime,
-    this.platforms,
-    this.stores,
+    this.nameOriginal,
+    this.description,
+    this.metacritic,
+    this.metacriticPlatforms,
     this.released,
     this.tba,
+    this.updated,
     this.backgroundImage,
+    this.backgroundImageAdditional,
+    this.website,
     this.rating,
     this.ratingTop,
     this.ratings,
-    this.ratingsCount,
-    this.reviewsTextCount,
+    this.reactions,
     this.added,
     this.addedByStatus,
-    this.metacritic,
+    this.playtime,
+    this.screenshotsCount,
+    this.moviesCount,
+    this.creatorsCount,
+    this.achievementsCount,
+    this.parentAchievementsCount,
+    this.redditUrl,
+    this.redditName,
+    this.redditDescription,
+    this.redditLogo,
+    this.redditCount,
+    this.twitchCount,
+    this.youtubeCount,
+    this.reviewsTextCount,
+    this.ratingsCount,
     this.suggestionsCount,
-    this.updated,
-    this.id,
-    this.score,
-    this.clip,
-    this.tags,
-    this.esrbRating,
+    this.alternativeNames,
+    this.metacriticUrl,
+    this.parentsCount,
+    this.additionsCount,
+    this.gameSeriesCount,
     this.userGame,
     this.reviewsCount,
-    this.communityRating,
     this.saturatedColor,
     this.dominantColor,
-    this.shortScreenshots,
     this.parentPlatforms,
+    this.platforms,
+    // this.stores,
+    // this.developers,
     this.genres,
+    //this.tags,
+    this.publishers,
+    this.esrbRating,
+    this.clip,
+    this.descriptionRaw,
   });
 
+  int? id;
   String? slug;
   String? name;
-  int? playtime;
-  List<Platform>? platforms;
-  List<Store>? stores;
-  DateTime? released;
+  String? nameOriginal;
+  String? description;
+  int? metacritic;
+  List<MetacriticPlatform>? metacriticPlatforms;
+  String? released;
   bool? tba;
+  String? updated;
   String? backgroundImage;
+  String? backgroundImageAdditional;
+  String? website;
   double? rating;
   int? ratingTop;
   List<Rating>? ratings;
-  int? ratingsCount;
-  int? reviewsTextCount;
+  Reactions? reactions;
   int? added;
   AddedByStatus? addedByStatus;
-  int? metacritic;
+  int? playtime;
+  int? screenshotsCount;
+  int? moviesCount;
+  int? creatorsCount;
+  int? achievementsCount;
+  int? parentAchievementsCount;
+  String? redditUrl;
+  String? redditName;
+  String? redditDescription;
+  String? redditLogo;
+  int? redditCount;
+  int? twitchCount;
+  int? youtubeCount;
+  int? reviewsTextCount;
+  int? ratingsCount;
   int? suggestionsCount;
-  DateTime? updated;
-  int? id;
-  dynamic score;
-  dynamic clip;
-  List<Tag>? tags;
-  EsrbRating? esrbRating;
+  List<dynamic>? alternativeNames;
+  String? metacriticUrl;
+  int? parentsCount;
+  int? additionsCount;
+  int? gameSeriesCount;
   dynamic userGame;
   int? reviewsCount;
-  int? communityRating;
   String? saturatedColor;
   String? dominantColor;
-  List<ShortScreenshot>? shortScreenshots;
-  List<Platform>? parentPlatforms;
-  List<Genre>? genres;
+  List<ParentPlatform>? parentPlatforms;
+  List<PlatformElement>? platforms;
+  // List<Store>? stores;
+  // List<Developer>? developers;
+  List<Genres>? genres;
+  //List<Developer>? tags;
+  List<Developer>? publishers;
+  dynamic esrbRating;
+  dynamic clip;
+  String? descriptionRaw;
 
-  factory Result.fromJson(Map<String, dynamic> json) => Result(
+  factory GameDetailsResponse.fromJson(Map<String, dynamic> json) =>
+      GameDetailsResponse(
+        id: json["id"],
         slug: json["slug"],
         name: json["name"],
-        playtime: json["playtime"],
-        platforms: json["platforms"] == null
+        nameOriginal: json["name_original"],
+        description: json["description"],
+        metacritic: json["metacritic"],
+        metacriticPlatforms: json["metacritic_platforms"] == null
             ? []
-            : List<Platform>.from(
-                json["platforms"]!.map((x) => Platform.fromJson(x))),
-        stores: json["stores"] == null
-            ? []
-            : List<Store>.from(json["stores"]!.map((x) => Store.fromJson(x))),
-        released:
-            json["released"] == null ? null : DateTime.parse(json["released"]),
+            : List<MetacriticPlatform>.from(json["metacritic_platforms"]!
+                .map((x) => MetacriticPlatform.fromJson(x))),
+        released: json["released"] == null ? null : json["released"],
         tba: json["tba"],
+        updated: json["updated"] == null ? null : json["updated"],
         backgroundImage: json["background_image"],
+        backgroundImageAdditional: json["background_image_additional"],
+        website: json["website"],
         rating: json["rating"]?.toDouble(),
         ratingTop: json["rating_top"],
         ratings: json["ratings"] == null
             ? []
             : List<Rating>.from(
                 json["ratings"]!.map((x) => Rating.fromJson(x))),
-        ratingsCount: json["ratings_count"],
-        reviewsTextCount: json["reviews_text_count"],
+        reactions: json["reactions"] == null
+            ? null
+            : Reactions.fromJson(json["reactions"]),
         added: json["added"],
         addedByStatus: json["added_by_status"] == null
             ? null
             : AddedByStatus.fromJson(json["added_by_status"]),
-        metacritic: json["metacritic"],
+        playtime: json["playtime"],
+        screenshotsCount: json["screenshots_count"],
+        moviesCount: json["movies_count"],
+        creatorsCount: json["creators_count"],
+        achievementsCount: json["achievements_count"],
+        parentAchievementsCount: json["parent_achievements_count"],
+        redditUrl: json["reddit_url"],
+        redditName: json["reddit_name"],
+        redditDescription: json["reddit_description"],
+        redditLogo: json["reddit_logo"],
+        redditCount: json["reddit_count"],
+        twitchCount: json["twitch_count"],
+        youtubeCount: json["youtube_count"],
+        reviewsTextCount: json["reviews_text_count"],
+        ratingsCount: json["ratings_count"],
         suggestionsCount: json["suggestions_count"],
-        updated:
-            json["updated"] == null ? null : DateTime.parse(json["updated"]),
-        id: json["id"],
-        score: json["score"],
-        clip: json["clip"],
-        tags: json["tags"] == null
+        alternativeNames: json["alternative_names"] == null
             ? []
-            : List<Tag>.from(json["tags"]!.map((x) => Tag.fromJson(x))),
-        esrbRating: json["esrb_rating"] == null
-            ? null
-            : EsrbRating.fromJson(json["esrb_rating"]),
+            : List<dynamic>.from(json["alternative_names"]!.map((x) => x)),
+        metacriticUrl: json["metacritic_url"],
+        parentsCount: json["parents_count"],
+        additionsCount: json["additions_count"],
+        gameSeriesCount: json["game_series_count"],
         userGame: json["user_game"],
         reviewsCount: json["reviews_count"],
-        communityRating: json["community_rating"],
-        saturatedColor: json["saturated_color"]!,
-        dominantColor: json["dominant_color"]!,
-        shortScreenshots: json["short_screenshots"] == null
-            ? []
-            : List<ShortScreenshot>.from(json["short_screenshots"]!
-                .map((x) => ShortScreenshot.fromJson(x))),
+        saturatedColor: json["saturated_color"],
+        dominantColor: json["dominant_color"],
         parentPlatforms: json["parent_platforms"] == null
             ? []
-            : List<Platform>.from(
-                json["parent_platforms"]!.map((x) => Platform.fromJson(x))),
+            : List<ParentPlatform>.from(json["parent_platforms"]!
+                .map((x) => ParentPlatform.fromJson(x))),
+        platforms: json["platforms"] == null
+            ? []
+            : List<PlatformElement>.from(
+                json["platforms"]!.map((x) => PlatformElement.fromJson(x))),
+        // stores: json["stores"] == null
+        //     ? []
+        //     : List<Store>.from(json["stores"]!.map((x) => Store.fromJson(x))),
+        // developers: json["developers"] == null
+        //     ? []
+        //     : List<Developer>.from(
+        //         json["developers"]!.map((x) => Developer.fromJson(x))),
         genres: json["genres"] == null
             ? []
-            : List<Genre>.from(json["genres"]!.map((x) => Genre.fromJson(x))),
+            : List<Genres>.from(json["genres"]!.map((x) => Genres.fromJson(x))),
+        // tags: json["tags"] == null
+        //     ? []
+        //     : List<Developer>.from(
+        //         json["tags"]!.map((x) => Developer.fromJson(x))),
+        // publishers: json["publishers"] == null
+        //     ? []
+        //     : List<Developer>.from(
+        //         json["publishers"]!.map((x) => Developer.fromJson(x))),
+        esrbRating: json["esrb_rating"],
+        clip: json["clip"],
+        descriptionRaw: json["description_raw"],
       );
 }
 
 class AddedByStatus {
   AddedByStatus({
-    this.toplay,
     this.yet,
     this.owned,
+    this.beaten,
+    this.toplay,
     this.dropped,
     this.playing,
-    this.beaten,
   });
 
-  int? toplay;
   int? yet;
   int? owned;
+  int? beaten;
+  int? toplay;
   int? dropped;
   int? playing;
-  int? beaten;
 
   factory AddedByStatus.fromJson(Map<String, dynamic> json) => AddedByStatus(
-        toplay: json["toplay"],
         yet: json["yet"],
         owned: json["owned"],
+        beaten: json["beaten"],
+        toplay: json["toplay"],
         dropped: json["dropped"],
         playing: json["playing"],
-        beaten: json["beaten"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "yet": yet,
+        "owned": owned,
+        "beaten": beaten,
+        "toplay": toplay,
+        "dropped": dropped,
+        "playing": playing,
+      };
 }
 
-class EsrbRating {
-  EsrbRating({
+class Genres {
+  Genres({
     this.id,
     this.name,
     this.slug,
-    this.nameEn,
-    this.nameRu,
+    this.gamesCount,
+    this.imageBackground,
   });
 
   int? id;
   String? name;
   String? slug;
-  String? nameEn;
-  String? nameRu;
+  int? gamesCount;
+  String? imageBackground;
 
-  factory EsrbRating.fromJson(Map<String, dynamic> json) => EsrbRating(
+  factory Genres.fromJson(Map<String, dynamic> json) => Genres(
         id: json["id"],
         name: json["name"],
         slug: json["slug"],
-        nameEn: json["name_en"],
-        nameRu: json["name_ru"],
+        gamesCount: json["games_count"],
+        imageBackground: json["image_background"],
       );
 }
 
-class Genre {
-  Genre({
+class Developer {
+  Developer({
     this.id,
     this.name,
     this.slug,
+    this.gamesCount,
+    this.imageBackground,
+    this.domain,
+    this.language,
   });
 
   int? id;
   String? name;
   String? slug;
+  int? gamesCount;
+  String? imageBackground;
+  String? domain;
+  String? language;
 
-  factory Genre.fromJson(Map<String, dynamic> json) => Genre(
+  factory Developer.fromJson(Map<String, dynamic> json) => Developer(
         id: json["id"],
         name: json["name"],
         slug: json["slug"],
+        gamesCount: json["games_count"],
+        imageBackground: json["image_background"],
+        domain: json["domain"],
+        language: json["language"]!,
       );
 }
 
-class Platform {
-  Platform({
+class MetacriticPlatform {
+  MetacriticPlatform({
+    this.metascore,
+    this.url,
     this.platform,
   });
 
-  Genre? platform;
+  int? metascore;
+  String? url;
+  MetacriticPlatformPlatform? platform;
 
-  factory Platform.fromJson(Map<String, dynamic> json) => Platform(
-        platform:
-            json["platform"] == null ? null : Genre.fromJson(json["platform"]),
+  factory MetacriticPlatform.fromJson(Map<String, dynamic> json) =>
+      MetacriticPlatform(
+        metascore: json["metascore"],
+        url: json["url"],
+        platform: json["platform"] == null
+            ? null
+            : MetacriticPlatformPlatform.fromJson(json["platform"]),
       );
+}
+
+class MetacriticPlatformPlatform {
+  MetacriticPlatformPlatform({
+    this.platform,
+    this.name,
+    this.slug,
+  });
+
+  int? platform;
+  String? name;
+  String? slug;
+
+  factory MetacriticPlatformPlatform.fromJson(Map<String, dynamic> json) =>
+      MetacriticPlatformPlatform(
+        platform: json["platform"],
+        name: json["name"],
+        slug: json["slug"],
+      );
+}
+
+class ParentPlatform {
+  ParentPlatform({
+    this.platform,
+  });
+
+  ParentPlatformPlatform? platform;
+
+  factory ParentPlatform.fromJson(Map<String, dynamic> json) => ParentPlatform(
+        platform: json["platform"] == null
+            ? null
+            : ParentPlatformPlatform.fromJson(json["platform"]),
+      );
+}
+
+class ParentPlatformPlatform {
+  ParentPlatformPlatform({
+    this.id,
+    this.name,
+    this.slug,
+  });
+
+  int? id;
+  String? name;
+  String? slug;
+
+  factory ParentPlatformPlatform.fromJson(Map<String, dynamic> json) =>
+      ParentPlatformPlatform(
+        id: json["id"],
+        name: json["name"],
+        slug: json["slug"],
+      );
+}
+
+class PlatformElement {
+  PlatformElement({
+    this.platform,
+    this.releasedAt,
+    this.requirements,
+  });
+
+  PlatformPlatform? platform;
+  String? releasedAt;
+  Requirements? requirements;
+
+  factory PlatformElement.fromJson(Map<String, dynamic> json) =>
+      PlatformElement(
+        platform: json["platform"] == null
+            ? null
+            : PlatformPlatform.fromJson(json["platform"]),
+        releasedAt: json["released_at"] == null ? null : json["released_at"],
+        requirements: json["requirements"] == null
+            ? null
+            : Requirements.fromJson(json["requirements"]),
+      );
+}
+
+class PlatformPlatform {
+  PlatformPlatform({
+    this.id,
+    this.name,
+    this.slug,
+    this.image,
+    this.yearEnd,
+    this.yearStart,
+    this.gamesCount,
+    this.imageBackground,
+  });
+
+  int? id;
+  String? name;
+  String? slug;
+  dynamic image;
+  dynamic yearEnd;
+  int? yearStart;
+  int? gamesCount;
+  String? imageBackground;
+
+  factory PlatformPlatform.fromJson(Map<String, dynamic> json) =>
+      PlatformPlatform(
+        id: json["id"],
+        name: json["name"],
+        slug: json["slug"],
+        image: json["image"],
+        yearEnd: json["year_end"],
+        yearStart: json["year_start"],
+        gamesCount: json["games_count"],
+        imageBackground: json["image_background"],
+      );
+}
+
+class Requirements {
+  Requirements({
+    this.minimum,
+    this.recommended,
+  });
+
+  String? minimum;
+  String? recommended;
+
+  factory Requirements.fromJson(Map<String, dynamic> json) => Requirements(
+        minimum: json["minimum"],
+        recommended: json["recommended"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "minimum": minimum,
+        "recommended": recommended,
+      };
 }
 
 class Rating {
@@ -255,68 +458,32 @@ class Rating {
 
   factory Rating.fromJson(Map<String, dynamic> json) => Rating(
         id: json["id"],
-        title: json["title"]!,
+        title: json["title"],
         count: json["count"],
         percent: json["percent"]?.toDouble(),
       );
 }
 
-class ShortScreenshot {
-  ShortScreenshot({
-    this.id,
-    this.image,
-  });
+class Reactions {
+  Reactions();
 
-  int? id;
-  String? image;
-
-  factory ShortScreenshot.fromJson(Map<String, dynamic> json) =>
-      ShortScreenshot(
-        id: json["id"],
-        image: json["image"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "image": image,
-      };
+  factory Reactions.fromJson(Map<String, dynamic> json) => Reactions();
 }
 
 class Store {
   Store({
+    this.id,
+    this.url,
     this.store,
   });
 
-  Genre? store;
+  int? id;
+  String? url;
+  Developer? store;
 
   factory Store.fromJson(Map<String, dynamic> json) => Store(
-        store: json["store"] == null ? null : Genre.fromJson(json["store"]),
-      );
-}
-
-class Tag {
-  Tag({
-    this.id,
-    this.name,
-    this.slug,
-    this.language,
-    this.gamesCount,
-    this.imageBackground,
-  });
-
-  int? id;
-  String? name;
-  String? slug;
-  String? language;
-  int? gamesCount;
-  String? imageBackground;
-
-  factory Tag.fromJson(Map<String, dynamic> json) => Tag(
         id: json["id"],
-        name: json["name"],
-        slug: json["slug"],
-        language: json["language"]!,
-        gamesCount: json["games_count"],
-        imageBackground: json["image_background"],
+        url: json["url"],
+        store: json["store"] == null ? null : Developer.fromJson(json["store"]),
       );
 }

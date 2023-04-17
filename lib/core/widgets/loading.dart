@@ -14,14 +14,14 @@ class LoadingWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [
         SpinKitWanderingCubes(
-          color: AppColors.orange,
+          color: AppColors.teal,
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
           child: Center(
             child: Text(
               'Loading',
-              style: TextStyle(color: AppColors.orange),
+              style: TextStyle(color: AppColors.teal),
             ),
           ),
         )

@@ -12,6 +12,7 @@ class Routes {
   static final Map<String, WidgetBuilder> routes = {
     gamesPage: (context) => GamesPage(),
     gameDetailsPage: (context) => GameDetailsPage(
-        game: ModalRoute.of(context)!.settings.arguments as GamesPage),
+          getid: null,
+        ),
   };
 }
