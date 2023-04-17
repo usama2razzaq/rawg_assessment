@@ -72,10 +72,6 @@ class GamesPage extends StatelessWidget {
                                         Radius.circular(10)),
                                   ),
                                   child: Wrap(
-                                    // crossAxisAlignment:
-                                    //     CrossAxisAlignment.end,
-                                    // mainAxisAlignment:
-                                    //     MainAxisAlignment.end,
                                     children: [
                                       const SizedBox(height: 10),
                                       Container(

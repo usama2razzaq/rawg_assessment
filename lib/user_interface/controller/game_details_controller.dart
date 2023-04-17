@@ -25,15 +25,13 @@ class GameDetailsController extends GetxController {
 
   fetchGameDetails(int id) async {
     try {
-      print("id  = ${id}");
       gameDetails.value = await repository!.getGameDetails(id: id);
 
-      //  print(gameDetails.value!.genres);
       isLoading.value = true;
     } catch (e) {
       print(e);
 
-      // Get.back(closeOverlays: true);
+      Get.back(closeOverlays: true);
     }
   }
 }

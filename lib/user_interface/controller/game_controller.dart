@@ -9,7 +9,6 @@ class GameController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool loadPage = false.obs;
   RxBool isNextPage = false.obs, allowNextPage = true.obs;
-
   RxInt page = 1.obs, perPage = 20.obs;
   Repository? repository;
   GamesResponse? gameList;
@@ -82,11 +81,6 @@ class GameController extends GetxController {
         isLoading.value = true;
       } else {
         savedGameList!.addAll(gameList!.results!);
-
-        //     savedGameList!.addAll(gameList!.results!.getRange(
-        // (page.value * perPage.value) - perPage.value, untilIndex));
-
-        // gameList!.results = savedGameList!;
 
         isNextPage.value = false;
         isLoading.value = true;

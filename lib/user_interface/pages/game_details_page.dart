@@ -24,7 +24,7 @@ class GameDetailsPage extends StatelessWidget {
                     backgroundColor: AppColors.teal,
                     pinned: true,
                     title: Text(gameDetailsCtrl.gameDetails.value!.name!),
-                    expandedHeight: 270.0,
+                    expandedHeight: 260.0,
                     flexibleSpace: FlexibleSpaceBar(
                       background: Stack(children: [
                         CachedNetworkImage(
@@ -43,7 +43,7 @@ class GameDetailsPage extends StatelessWidget {
                           top: 0,
                           left: 0,
                           right: 0,
-                          bottom: 0,
+                          bottom: 120,
                           child: Container(
                             height: 100,
                             width: 100,
@@ -55,166 +55,6 @@ class GameDetailsPage extends StatelessWidget {
                                   AppColors.darkGrey,
                                   Colors.transparent
                                 ])),
-                          ),
-                        ),
-                        Positioned(
-                          top: 150,
-                          left: 120,
-                          right: 120,
-                          bottom: 30,
-                          child: Stack(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: CachedNetworkImageProvider(
-                                        gameDetailsCtrl.gameDetails.value!
-                                                .backgroundImage ??
-                                            '',
-                                        cacheKey: gameDetailsCtrl.gameDetails
-                                            .value!.backgroundImage),
-                                    fit: BoxFit.cover,
-                                    scale: 1.0,
-                                  ),
-                                  color: AppColors.darkGrey,
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 1,
-                                      blurRadius: 7,
-                                      offset: const Offset(
-                                          0, 3), // changes position of shadow
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Positioned(
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                      gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: [
-                                        AppColors.darkGrey,
-                                        Colors.transparent
-                                      ])),
-                                ),
-                              ),
-                              Positioned(
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                child: Container(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          gameDetailsCtrl
-                                              .gameDetails.value!.name!,
-                                          style: const TextStyle(
-                                            color: AppColors.white,
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.bold,
-                                            shadows: [
-                                              Shadow(
-                                                blurRadius: 10.0,
-                                                color: Colors.black,
-                                                offset: Offset(5.0, 5.0),
-                                              ),
-                                            ],
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 1,
-                          left: 0,
-                          right: 0,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [
-                                  AppColors.darkGrey,
-                                  Colors.transparent
-                                ])),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.star,
-                                      color: gameDetailsCtrl
-                                                  .gameDetails.value!.rating! >=
-                                              4
-                                          ? AppColors.lightGrey
-                                          : AppColors.teal,
-                                      size: 20,
-                                    ),
-                                    Text(
-                                      gameDetailsCtrl.gameDetails.value!.rating
-                                          .toString(),
-                                      style: const TextStyle(
-                                          color: AppColors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.info,
-                                      color: AppColors.teal,
-                                      size: 20,
-                                    ),
-                                    Text(
-                                      gameDetailsCtrl
-                                          .gameDetails.value!.reviewsCount
-                                          .toString(),
-                                      style: const TextStyle(
-                                          color: AppColors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.cloud_done,
-                                      color: AppColors.teal,
-                                      size: 20,
-                                    ),
-                                    Text(
-                                      '${gameDetailsCtrl.gameDetails.value!.metacritic.toString()}%',
-                                      style: const TextStyle(
-                                          color: AppColors.white,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
                           ),
                         ),
                       ]),
@@ -319,7 +159,9 @@ class GameDetailsPage extends StatelessWidget {
                                   children: [
                                     const Text(
                                       'Platforms',
-                                      style: TextStyle(color: AppColors.white),
+                                      style: TextStyle(
+                                          color: AppColors.black,
+                                          fontWeight: FontWeight.w500),
                                     ),
                                     Expanded(
                                       child: ListView.builder(
