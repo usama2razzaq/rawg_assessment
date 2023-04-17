@@ -48,10 +48,7 @@ class GameDetailsResponse {
     this.dominantColor,
     this.parentPlatforms,
     this.platforms,
-    // this.stores,
-    // this.developers,
     this.genres,
-    //this.tags,
     this.publishers,
     this.esrbRating,
     this.clip,
@@ -104,10 +101,7 @@ class GameDetailsResponse {
   String? dominantColor;
   List<ParentPlatform>? parentPlatforms;
   List<PlatformElement>? platforms;
-  // List<Store>? stores;
-  // List<Developer>? developers;
   List<Genres>? genres;
-  //List<Developer>? tags;
   List<Developer>? publishers;
   dynamic esrbRating;
   dynamic clip;
@@ -179,24 +173,6 @@ class GameDetailsResponse {
             ? []
             : List<PlatformElement>.from(
                 json["platforms"]!.map((x) => PlatformElement.fromJson(x))),
-        // stores: json["stores"] == null
-        //     ? []
-        //     : List<Store>.from(json["stores"]!.map((x) => Store.fromJson(x))),
-        // developers: json["developers"] == null
-        //     ? []
-        //     : List<Developer>.from(
-        //         json["developers"]!.map((x) => Developer.fromJson(x))),
-        genres: json["genres"] == null
-            ? []
-            : List<Genres>.from(json["genres"]!.map((x) => Genres.fromJson(x))),
-        // tags: json["tags"] == null
-        //     ? []
-        //     : List<Developer>.from(
-        //         json["tags"]!.map((x) => Developer.fromJson(x))),
-        // publishers: json["publishers"] == null
-        //     ? []
-        //     : List<Developer>.from(
-        //         json["publishers"]!.map((x) => Developer.fromJson(x))),
         esrbRating: json["esrb_rating"],
         clip: json["clip"],
         descriptionRaw: json["description_raw"],

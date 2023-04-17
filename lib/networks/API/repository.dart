@@ -6,6 +6,7 @@ import 'package:assignment/networks/data_model/games_response.dart';
 import '../../api/api_key.dart';
 
 class Repository {
+  //Api Helper to method
   ApiBaseHelper helper = ApiBaseHelper();
 
   Future<GamesResponse> getGames(

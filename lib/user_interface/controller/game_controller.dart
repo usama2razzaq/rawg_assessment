@@ -8,10 +8,15 @@ import 'package:intl/intl.dart';
 class GameController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool loadPage = false.obs;
+
   RxBool isNextPage = false.obs, allowNextPage = true.obs;
+
   RxInt page = 1.obs, perPage = 20.obs;
+
   Repository? repository;
+
   GamesResponse? gameList;
+
   RxList<Result>? savedGameList = <Result>[].obs;
   final currentDate = DateTime.now();
   DateTime? endDate;
@@ -38,6 +43,7 @@ class GameController extends GetxController {
 
     super.dispose();
   }
+//This method using for pagination
 
   scrollListener() {
     if (scrollController.value.offset <=
@@ -54,9 +60,9 @@ class GameController extends GetxController {
     }
   }
 
+//call next page to load frop api
   void nextPage() {
     if (!allowNextPage.value) return;
-
     page = page + 1;
     isNextPage.value = true;
     print(page.value);
@@ -64,6 +70,7 @@ class GameController extends GetxController {
     fetchGameList();
   }
 
+//Fetch Data from Api
   fetchGameList() async {
     try {
       gameList = await repository!.getGames(

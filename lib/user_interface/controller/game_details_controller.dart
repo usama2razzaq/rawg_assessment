@@ -23,6 +23,7 @@ class GameDetailsController extends GetxController {
     super.dispose();
   }
 
+//Fetch Data from Api
   fetchGameDetails(int id) async {
     try {
       gameDetails.value = await repository!.getGameDetails(id: id);
