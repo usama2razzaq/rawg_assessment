@@ -7,6 +7,7 @@ class GameDetailsController extends GetxController {
 
   RxInt id = 0.obs;
   Repository? repository;
+  //Json Parsing Model
   Rxn<GameDetailsResponse> gameDetails = Rxn<GameDetailsResponse>();
 
   @override

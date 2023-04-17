@@ -22,6 +22,7 @@ class Repository {
     }
   }
 
+//get games details from REST API
   Future<GameDetailsResponse> getGameDetails({int? id}) async {
     try {
       final response = await helper.get('games/$id?key=$rawgApiKey');
