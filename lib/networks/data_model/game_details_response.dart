@@ -165,6 +165,8 @@ class GameDetailsResponse {
         reviewsCount: json["reviews_count"],
         saturatedColor: json["saturated_color"],
         dominantColor: json["dominant_color"],
+        genres:
+            List<Genres>.from(json["genres"].map((x) => Genres.fromJson(x))),
         parentPlatforms: json["parent_platforms"] == null
             ? []
             : List<ParentPlatform>.from(json["parent_platforms"]!
